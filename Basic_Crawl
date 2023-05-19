@@ -7,18 +7,21 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 import re
 
+#ruru변수명에 검색어 저장
 ruru = input("검색어를 입력하세요: ")
 ruru = str(ruru)
 
+#크롬드라이버 실행
 def set_chrome_driver():
     chrome_options = webdriver.ChromeOptions()
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     return driver
 
+#크롬 옵션 선언
 options = webdriver.ChromeOptions()
 
+#지정한 user-agent로 설정합니다
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"
-
 options.add_argument('user-agent='+user_agent)
 
 driver = webdriver.Chrome("chromedriver", options= options)
@@ -63,10 +66,12 @@ def get_content(driver):
         place = soup.select('div._aagm')[0].text
     except:
         place = ''
-
+    
+    #입력받은 데이터 정렬
     data = [content, date, like, place, tags]
     return data
-
+    
+#게시물
 def move_next(driver):
     rigt = driver.find_element_by_css_selector("div._aagg._aagh")
     right.click()
@@ -100,11 +105,16 @@ input[1].send_keys(pw)
 
 # 엔터
 input[1].send_keys(Keys.RETURN)
-time.sleep(7)
+time.sleep(7) #이 과정 이후 슬립값 적게 적용할시 다음 명령어 실행 오류 발생
 
+#insta_crawl 함수 keyword ->ruru ruru에 저장된 검색어 url 생성
 ruruu = insta_crawl(ruru)
+
+#검색어가 포함된 url로 검색 결과 페이지 이동
 driver.get(url = insta_crawl(ruru))
 time.sleep(10)
+
+#첫번째 게시물 클릭 함수 실행
 crawl_first(driver)
 time.sleep(300)
 
