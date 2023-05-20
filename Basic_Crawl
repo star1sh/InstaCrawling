@@ -90,9 +90,9 @@ time.sleep(4)
 #인스타그램 로그인 계정정보 제공
 
 # 인스타 아이디
-id = "ruuyak3"
+id = 
 # 비밀번호
-pw = "dnxkvmfl5169"
+pw = 
 
 # id와 pw를 입력하는 창의 요소 정보 획득
 input = driver.find_elements(By.TAG_NAME, "input")
