@@ -9,8 +9,8 @@ import re
 import pandas as pd
 
 # step2.아이디, 비밀번호 설정
-id = "ahugena"
-pw = "rubby6478"
+id = ""
+pw = ""
 
 keyword = input("검색어를 입력하세요:")
 url = "https://www.instagram.com/explore/tags/"+ keyword 
