@@ -71,11 +71,12 @@ first_img_css = 'div._ac7v._aang > div._aabd._aa8k._aanf'
 
 time.sleep(10)
 
-#첫번째 게시물 클릭
+# step6. 첫번째 게시물 클릭
 post = driver.find_elements(By.CSS_SELECTOR,"div._aagw")
 post[0].click()
 time.sleep(10)
 
+#다음 게시물로 이동
 def move_next(driver):
     right = driver.find_element(By.CSS_SELECTOR,"div._aaqg._aaqh")
     right.click()
@@ -83,6 +84,7 @@ def move_next(driver):
 
 from bs4 import BeautifulSoup
 
+# step7. 좋아요 등의 컨텐츠 정보 가져오기
 def get_content(driver):
     html = driver.page_source
     soup = BeautifulSoup(html, 'lxml')
@@ -155,6 +157,8 @@ from datetime import datetime
 #results_df = pd.DataFrame(results)
 #results_df.colums = ['content','date','like','place','tags']
 #results_df.to_excel(date + '_about' + keyword+' insta crawling.xlsx')
+
+# step8.의미없는 태그 검색내용 결과데이터에서 제외
 stop_words = ['맞팔' , '좋아요', '좋반', '유머스타그램', '좋아요반사','선팔','첫줄반사']
 instagram_tags = [word for word in instgram_tags if word not in stop_words]
 
@@ -166,6 +170,7 @@ time.sleep(5)
 #count = Counter(instgram_tags)
 #common_tag_200 = count.most_common(10)
 
+# step9. 워드클라우드 시각화자료 생성
 from PIL import Image
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
